@@ -202,6 +202,13 @@ switch (_code) do {
 		};
 	};
 	
+	//Admin Key
+	case 60:
+	{
+		closeDialog 0;[] spawn life_fnc_openMenu;
+	};
+
+	
 	//U Key
 	case 22: {
 		if(!_alt && !_ctrlKey) then {

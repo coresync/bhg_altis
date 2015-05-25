@@ -104,7 +104,17 @@ class CfgFunctions
 		{
 			file = "\life_server\Functions\Client";
 		};
+		
+		class AS
+		{
+			file = "\life_server\AS_AdminMenu";
+			class receiver {};
+			class config {};
+			class getActions {};
+		};
 	};
+	
+	
 	
 	class TON_System
 	{

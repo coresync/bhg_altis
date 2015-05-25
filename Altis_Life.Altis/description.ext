@@ -31,6 +31,8 @@ SPY_Enable = true;
 #include "dialog\MasterHandler.h"
 #include "Config_Master.hpp"
 
+#include "AS_AdminMenu\spectating.hpp"
+
 class RscTitles
 {
 	#include "dialog\ui.hpp"
