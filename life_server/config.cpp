@@ -104,14 +104,6 @@ class CfgFunctions
 		{
 			file = "\life_server\Functions\Client";
 		};
-		
-		class AS
-		{
-			file = "\life_server\AS_AdminMenu";
-			class receiver {};
-			class config {};
-			class getActions {};
-		};
 	};
 	
 	
@@ -119,6 +111,14 @@ class CfgFunctions
 	class TON_System
 	{
 		tag = "TON";
+		class AS
+		{
+			file = "\life_server\AS_AdminMenu";
+			class receiver {};
+			class config {};
+			class getActions {};
+		};
+				
 		class Systems
 		{
 			file = "\life_server\Functions\Systems";
