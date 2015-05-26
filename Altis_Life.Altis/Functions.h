@@ -60,18 +60,6 @@ class Life_Client_Core
         class DYNMARKET_getPrice {};
     };
 	
-	class fuelstation
-	{
-		file = "core\fuelstation";
-		class emptyFuel {};
-		class emptyFuelStations {};
-		class fuelStationFill {};
-		class fuelStationSelectVehicle {};
-		class fuelStationShowMenu {};
-		class fuelStationSliderChange {};
-		class fuelStationVehicleCapacity {};
-	};
-	
 	class Medical_System
 	{
 		file = "core\medical";
@@ -222,6 +210,7 @@ class Life_Client_Core
 		class loadGear {};
 		class stripDownPlayer {};
 		class nearATM {};
+		class emptyFuel ();
 	};
 	
 	class Network
@@ -377,5 +366,22 @@ class Life_Client_Core
 		class vehicleGarage {};
 		class gangDeposit {};
 		class wireTransfer {};
+	};
+};
+
+class lhm_fuelstations
+{
+	tag = "lhm";
+	
+	class fuelstations
+	{
+		file = "core\fuelstations\script";
+		class fuelStationAddAction {};
+		class fuelStationFill {};
+		class fuelStationMenu {};
+		class fuelStationSelect {};
+		class fuelStationSliderChange {};
+		class initFuelstations {};
+		class vehFuelCap {};	
 	};
 };

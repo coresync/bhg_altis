@@ -1,6 +1,6 @@
-class FuelStation_Menu {
-	idd = 25500;
-	name= "FuelStation_Menu";
+class fuelstation_Dialog {
+	idd = 29000;
+	name= "fuelstation_dialog";
 	movingEnable = false;
 	enableSimulation = true;
 	onLoad = "";
@@ -30,8 +30,8 @@ class FuelStation_Menu {
 		
 		class Title : Life_RscTitle
 		{
-			idc = 25501;
-			text = "Schnell Treibstoff GmbH";
+			idc = 29001;
+			text = "Fuel Station";
 			x = 0.1;
 			y = 0.3;
 			w = 0.8;
@@ -41,7 +41,7 @@ class FuelStation_Menu {
 		class TextVehicleInfo : Life_RscText
 		{
 			idc = -1;
-			text = "Fahrzeuge";
+			text = "Vehicles";
 			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.3843])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.7019])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.8862])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.7])"};
 			x = 0.11; y = 0.36;
 			w = 0.485;
@@ -50,8 +50,8 @@ class FuelStation_Menu {
 		
 		class TextFuelstationGas : Life_RscText
 		{
-			idc = 25502;
-			text = "Zapfsaeule";
+			idc = 29002;
+			text = "Tankstelle (5.15€ pro Liter)";
 			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.3843])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.7019])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.8862])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.7])"};
 			x = 0.605; y = 0.36;
 			w = 0.285;
@@ -60,7 +60,7 @@ class FuelStation_Menu {
 		
 		class AmountFitIn : life_RscText
 		{
-			idc = 25503;
+			idc = 29003;
 			text = "";
 			
 			style=1;
@@ -71,7 +71,7 @@ class FuelStation_Menu {
 		
 		class AmountCash : life_RscText
 		{
-			idc = 25504;
+			idc = 29004;
 			text = "";
 			
 			style=1;
@@ -86,11 +86,11 @@ class FuelStation_Menu {
 	{
 		class VehicleList : Life_RscListBox
 		{
-			idc = 25511;
+			idc = 29011;
 			text = "";
 			sizeEx = 0.04;
 			colorBackground[] = {0.1,0.1,0.1,0.9};
-			onLBSelChanged = "[_this] call life_fnc_fuelStationSelectVehicle;";
+			onLBSelChanged = "[_this] call lhm_fnc_fuelStationSelect;";
 			
 			//Position & height
 			x = 0.11; y = 0.402;
@@ -99,10 +99,10 @@ class FuelStation_Menu {
 		
 		class sliderAmount : life_RscXSliderH 
 		{
-			idc = 25512;
+			idc = 29012;
 			text = "";
-			onSliderPosChanged = "[_this] call life_fnc_fuelStationSliderChange;";
-			tooltip = "Menge die getankt werden soll";
+			onSliderPosChanged = "[_this] call lhm_fnc_fuelStationSliderChange;";
+			tooltip = "Menge an Kraftstoff";
 			x = 0.605;
 			y = 0.37 + (1 / 25);
 			
@@ -112,10 +112,10 @@ class FuelStation_Menu {
 		
 		class btnRefillVehicle : Life_RscButtonMenu
 		{
-			idc = 25521;
-			text = "Tanken";
+			idc = 29021;
+			text = "auftanken";
 			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.3843])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.7019])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.8862])", 0.5};
-			onButtonClick = "[] spawn life_fnc_fuelstationFill;";
+			onButtonClick = "[] spawn lhm_fnc_fuelstationFill;";
 			
 			x = 0.605;
 			y = 0.74 - (1 / 25);
@@ -125,7 +125,7 @@ class FuelStation_Menu {
 		
 		class ButtonClose : Life_RscButtonMenu {
 			idc = -1;
-			text = "Schliessen";
+			text = "schließen";
 			onButtonClick = "closeDialog 0; life_action_inUse = false;";
 			x = 0.1;
 			y = 0.80 - (1 / 25);
