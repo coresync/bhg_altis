@@ -10,6 +10,7 @@ if(!hasInterface) exitWith {}; //This is a headless client, he doesn't need to d
 CONST(BIS_fnc_endMission,BIS_fnc_endMission);
 [] execVM "SpyGlass\fn_initSpy.sqf";
 [] execVM "core\init.sqf";
+[] execVM "core\fuelstation\fn_emptyFuel.sqf";
 
 //Execute JIP code.
 if((_this select 1)) then {

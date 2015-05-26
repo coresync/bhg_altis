@@ -60,6 +60,18 @@ class Life_Client_Core
         class DYNMARKET_getPrice {};
     };
 	
+	class fuelstation
+	{
+		file = "core\fuelstation";
+		class emptyFuel {};
+		class emptyFuelStations {};
+		class fuelStationFill {};
+		class fuelStationSelectVehicle {};
+		class fuelStationShowMenu {};
+		class fuelStationSliderChange {};
+		class fuelStationVehicleCapacity {};
+	};
+	
 	class Medical_System
 	{
 		file = "core\medical";
