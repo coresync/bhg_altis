@@ -68,6 +68,13 @@ class CfgSounds
 		sound[] = {"\sounds\flashbang.ogg", 1.0, 1};
 		titles[] = {};
 	};
+	
+	class BHG_Intro
+	{
+		name = "BHG_Intro";
+		sound[] = {"\sounds\intro.ogg", 1.0, 1};
+		titles[] = {};	
+	};
 };
 
 class CfgDebriefing

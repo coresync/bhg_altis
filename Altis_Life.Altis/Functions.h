@@ -27,6 +27,7 @@ class Life_Client_Core
 		class initMedic {};
 		class welcomeNotification {};
 		class survival {};
+		class introCam {};
 	};
 	
 	class Admin

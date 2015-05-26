@@ -23,4 +23,5 @@ if(life_is_arrested) then
 	waitUntil{!isNull (findDisplay 38500)}; //Wait for the spawn selection to be open.
 	waitUntil{isNull (findDisplay 38500)}; //Wait for the spawn selection to be done.
 };
+[] execVM "core\fn_introCam.sqf";
 player addRating 9999999;
