@@ -17,7 +17,7 @@ _txtCash = _display displayCtrl 29004;
 _sliFit = _display displayCtrl 29012;
 
 if(isNull life_fuelstation_fueltruck) then {
-	_maxFit = ( floor (life_atmcash_pirates / life_fuelstation_price)) min life_fuelstation_fitamount;
+	_maxFit = ( floor (life_atmcash / life_fuelstation_price)) min life_fuelstation_fitamount;
 	_sliNew = sliderPosition _sliFit;
 	if(_sliNew > _maxFit) then {
 		_sliFit sliderSetPosition _maxFit;

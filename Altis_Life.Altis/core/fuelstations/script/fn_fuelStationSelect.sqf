@@ -51,7 +51,7 @@ _sliFit ctrlShow true;
 _sliFit sliderSetSpeed [1,1];
 _sliFit sliderSetRange [0, _fitFuel];
 if(isNull life_fuelstation_fueltruck) then {
-	_cashFit = ( floor (life_atmcash_pirates / life_fuelstation_price)) min _fitFuel;
+	_cashFit = ( floor (life_atmcash / life_fuelstation_price)) min _fitFuel;
 	_sliFit sliderSetPosition _cashFit;
 	_txtCash ctrlShow true;
 	_txtCash ctrlSetText format["%1€", round (_cashFit * life_fuelstation_price)];

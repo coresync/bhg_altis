@@ -65,8 +65,8 @@ if(life_interrupted || !alive player || !_away) then {
 if(!isNull life_fuelstation_fueltruck) then { 
 	life_fuelstation_fueltruck setVariable["fueltruck_fuel",((life_fuelstation_fueltruck getVariable["fueltruck_fuel",0]) - _succAmount),true]; 
 } else {
-	life_atmcash_pirates = round (life_atmcash_pirates - (_succAmount * life_fuelstation_price));
-	if(life_atmcash_pirates < 0) then { life_atmcash_pirates = 0; };
+	life_atmcash = round (life_atmcash - (_succAmount * life_fuelstation_price));
+	if(life_atmcash < 0) then { life_atmcash = 0; };
 };
 
 if(_isTrailer == 1) then {
