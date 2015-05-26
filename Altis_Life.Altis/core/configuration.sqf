@@ -36,6 +36,8 @@ tawvd_addon_disable = true;
 
 life_fadeSound = false;
 
+BHG_Earplugs = 0;
+
 /******** Exploitfix Variables *****/
 life_action_gather = false; // add this to your variables
 

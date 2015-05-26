@@ -208,13 +208,22 @@ switch (_code) do {
 		closeDialog 0;[] spawn life_fnc_openMenu;
 	};
 	
-	//Shift+P = Faded Sound
+	////Shift+P = Faded Sound
+	//Polizei können hier Schritt für Schritt die Empfindlichkeit einstellen
 	case 25:
 	{
 		if(_shift) then
 		{
-			[] call life_fnc_fadeSound;
 			_handled = true;
+			if (playerside in [west,civilian,independent]) then
+			{
+				switch (player getVariable["BHG_Earplugs",0]) do {
+					case 0: {titleText ["Ear Plugs 90%", "PLAIN"]; 1 fadeSound 0.1; player setVariable ["BHG_Earplugs", 10]; };
+					case 10: {titleText ["Ear Plugs 60%", "PLAIN"]; 1 fadeSound 0.4; player setVariable ["BHG_Earplugs", 40]; };
+					case 40: {titleText ["Ear Plugs 30%", "PLAIN"]; 1 fadeSound 0.7; player setVariable ["BHG_Earplugs", 70]; };
+					case 70: {titleText ["Ear Plugs Removed", "PLAIN"]; 1 fadeSound 1; player setVariable ["BHG_Earplugs", 0]; };
+				};
+			};
 		};
 	};
 	
