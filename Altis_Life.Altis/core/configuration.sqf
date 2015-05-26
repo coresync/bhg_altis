@@ -65,6 +65,10 @@ life_thirst = 100;
 life_hunger = 100;
 CASH = 0;
 
+//life_fuelstations = ["fuelstation_1","fuelstation_2","fuelstation_3","fuelstation_4","fuelstation_5","fuelstation_6","fuelstation_7","fuelstation_8","fuelstation_9","fuelstation_10","fuelstation_11","fuelstation_12","fuelstation_13","fuelstation_14","fuelstation_15","fuelstation_16","fuelstation_17","fuelstation_18","fuelstation_19","fuelstation_20","fuelstation_21","fuelstation_22","fuelstation_23","fuelstation_24","fuelstation_25","fuelstation_26","fuelstation_27","fuelstation_28","fuelstation_29","fuelstation_30"];
+//life_fuelstations_air = ["fuelstation_23","fuelstation_24","fuelstation_25"];
+//life_fuelstations_ship = ["fuelstation_26","fuelstation_27","fuelstation_28","fuelstation_29"];
+
 life_istazed = false;
 life_vehicles = [];
 
