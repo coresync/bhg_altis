@@ -207,7 +207,16 @@ switch (_code) do {
 	{
 		closeDialog 0;[] spawn life_fnc_openMenu;
 	};
-
+	
+	//Shift+P = Faded Sound
+	case 25:
+	{
+		if(_shift) then
+		{
+			[] call life_fnc_fadeSound;
+			_handled = true;
+		};
+	};
 	
 	//U Key
 	case 22: {
