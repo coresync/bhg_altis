@@ -41,10 +41,6 @@ BHG_Earplugs = 0;
 /******** Exploitfix Variables *****/
 life_action_gather = false; // add this to your variables
 
-//Persistent Saving
-__CONST__(life_save_civ,TRUE); //Save weapons for civs?
-__CONST__(life_save_yinv,TRUE); //Save Y-Inventory for players?
-
 //Uniform price (0),Hat Price (1),Glasses Price (2),Vest Price (3),Backpack Price (4)
 life_clothing_purchase = [-1,-1,-1,-1,-1];
 /*
