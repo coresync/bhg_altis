@@ -1,6 +1,6 @@
 /*
 	File: fn_vehicleDead.sqf
-
+	
 	Description:
 	Tells the database that this vehicle has died and can't be recovered.
 */
@@ -14,7 +14,7 @@ if(count _dbInfo == 0) exitWith {};
 _uid = _dbInfo select 0;
 _plate = _dbInfo select 1;
 
-_query = format["vehicleDead:0:%1:%2",_uid,_plate];
+_query = format["UPDATE vehicles SET alive='0' WHERE pid='%1' AND plate='%2'",_uid,_plate];
 
 waitUntil {!DB_Async_Active};
 _thread = [_query,1] call DB_fnc_asyncCall;

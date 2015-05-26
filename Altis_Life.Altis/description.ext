@@ -1,6 +1,6 @@
-author = "Tonic and Itsyuka";
-onLoadName = "Altis Life RPG v4.0";
-onLoadMission = "An RPG game mode developed by Tonic";
+author = "Tonic";
+onLoadName = "Altis Life RPG v3.1.4.8";
+onLoadMission = "A RPG game mode developed by Tonic";
 joinUnassigned = 1;
 respawn = BASE;
 respawndelay = 5;
@@ -23,15 +23,7 @@ corpseLimit = 150;
 corpseRemovalMinTime = 999;
 corpseRemovalMaxTime = 9999;
 
-//SpyGlass configuration
-SPY_Enable = true;
-
-#include "Config_Spyglass.hpp"
-
 #include "dialog\MasterHandler.h"
-#include "Config_Master.hpp"
-
-#include "AS_AdminMenu\spectating.hpp"
 
 class RscTitles
 {
@@ -54,14 +46,14 @@ class CfgSounds
 		sound[] = {"\sounds\Siren_Long.ogg", 1.0, 1};
 		titles[] = {};
 	};
-
+	
 	class tazersound
 	{
 		name = "Tazersound";
 		sound[] = {"\sounds\tazer.ogg", 0.25, 1};
 		titles[] = {};
 	};
-
+	
 	class flashbang
 	{
 		name = "flashbang";
@@ -88,7 +80,7 @@ class CfgDebriefing
 		picture = "";
 		pictureColor[] = {0,0.3,0.6,1};
 	};
-
+	
 	class Blacklisted
 	{
 		title = "Mission Failed";
@@ -98,7 +90,7 @@ class CfgDebriefing
 		picture = "";
 		pictureColor[] = {0,0.3,0.6,1};
 	};
-
+	
 	class SpyGlass
 	{
 		title = "The SpyGlass sees you";
@@ -120,7 +112,7 @@ class CfgNotifications
 		duration = 5;
 		priority = 7;
 	};
-
+	
 	class DeliveryAssigned
 	{
 		title = "Delivery Job Accepted";
@@ -129,7 +121,7 @@ class CfgNotifications
 		duration = 10;
 		priority = 7;
 	};
-
+	
 	class DeliveryFailed
 	{
 		title = "Delivery Job Failed";
@@ -138,7 +130,7 @@ class CfgNotifications
 		duration = 7;
 		priority = 7;
 	};
-
+	
 	class DeliverySucceeded
 	{
 		title = "Delivery Job Completed";
@@ -147,7 +139,7 @@ class CfgNotifications
 		duration = 6;
 		priority = 6;
 	};
-
+	
 	class TextMessage
 	{
 		title = "Received A Text Message";
@@ -156,7 +148,7 @@ class CfgNotifications
 		duration = 10;
 		priority = 6;
 	};
-
+	
 	class PoliceDispatch
 	{
 		title = "911 Dispatch Center";
@@ -165,7 +157,7 @@ class CfgNotifications
 		duration = 10;
 		priority = 6;
 	};
-
+	
 	class AdminDispatch
 	{
 		title = "Admin Dispatch Center";
@@ -174,7 +166,7 @@ class CfgNotifications
 		duration = 10;
 		priority = 6;
 	};
-
+	
 	class AdminMessage
 	{
 		title = "Admin Message";
@@ -184,3 +176,4 @@ class CfgNotifications
 		priority = 5;
 	};
 };
+#include "AS_AdminMenu\spectating.hpp"

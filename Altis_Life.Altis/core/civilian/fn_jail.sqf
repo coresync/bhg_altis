@@ -1,4 +1,3 @@
-#include <macro.h>
 /*
 	File: fn_jail.sqf
 	Author: Bryan "Tonic" Boardwine
@@ -13,21 +12,23 @@ if(isNull _unit) exitWith {}; //Dafuq?
 if(_unit != player) exitWith {}; //Dafuq?
 if(life_is_arrested) exitWith {}; //Dafuq i'm already arrested
 _bad = [_this,1,false,[false]] call BIS_fnc_param;
-player SVAR ["restrained",false,true];
-player SVAR ["Escorting",false,true];
-player SVAR ["transporting",false,true];
+player setVariable["restrained",false,true];
+player setVariable["Escorting",false,true];
+player setVariable["transporting",false,true];
 
 titleText[localize "STR_Jail_Warn","PLAIN"];
 hint localize "STR_Jail_LicenseNOTF";
 player setPos (getMarkerPos "jail_marker");
 
-if(_bad) then {
+if(_bad) then
+{
 	waitUntil {alive player};
 	sleep 1;
 };
 
 //Check to make sure they goto check
-if(player distance (getMarkerPos "jail_marker") > 40) then {
+if(player distance (getMarkerPos "jail_marker") > 40) then
+{
 	player setPos (getMarkerPos "jail_marker");
 };
 
@@ -44,5 +45,5 @@ life_is_arrested = true;
 removeAllWeapons player;
 {player removeMagazine _x} foreach (magazines player);
 
-[[player,_bad],"life_fnc_jailSys",false,false] call life_fnc_MP;
+[[player,_bad],"life_fnc_jailSys",false,false] spawn life_fnc_MP;
 [5] call SOCK_fnc_updatePartial;

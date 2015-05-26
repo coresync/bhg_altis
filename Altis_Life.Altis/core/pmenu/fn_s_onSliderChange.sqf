@@ -15,21 +15,21 @@ switch (_mode) do
 {
 	case 0:
 	{
-		life_vdFoot = round(_value);
+		tawvd_foot = round(_value);
 		ctrlSetText[2902,format["%1",round(_value)]];
 		[] call life_fnc_updateViewDistance;
 	};
 	
 	case 1:
 	{
-		life_vdCar = round(_value);
+		tawvd_car = round(_value);
 		ctrlSetText[2912,format["%1",round(_value)]];
 		[] call life_fnc_updateViewDistance;
 	};
 	
 	case 2:
 	{
-		life_vdAir = round(_value);
+		tawvd_air = round(_value);
 		ctrlSetText[2922,format["%1",round(_value)]];
 		[] call life_fnc_updateViewDistance;
 	};

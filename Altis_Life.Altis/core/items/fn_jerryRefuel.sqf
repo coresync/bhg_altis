@@ -12,7 +12,7 @@ if(isNull _vehicle) exitWith {hint localize "STR_ISTR_Jerry_NotLooking"};
 if(!(_vehicle isKindOF "LandVehicle") && !(_vehicle isKindOf "Air") && !(_vehicle isKindOf "Ship")) exitWith {};
 if(player distance _vehicle > 7.5) exitWith {hint localize "STR_ISTR_Jerry_NotNear"};
 
-if(!([false,"fuelFull",1] call life_fnc_handleInv)) exitWith {};
+if(!([false,"fuelF",1] call life_fnc_handleInv)) exitWith {};
 life_action_inUse = true;
 _displayName = getText(configFile >> "CfgVehicles" >> (typeOf _vehicle) >> "displayName");
 
@@ -30,8 +30,7 @@ _cP = 0.01;
 while{true} do
 {
 	if(animationState player != "AinvPknlMstpSnonWnonDnon_medic_1") then {
-		[[player,"AinvPknlMstpSnonWnonDnon_medic_1",true],"life_fnc_animSync",true,false] call life_fnc_MP;
-		player switchMove "AinvPknlMstpSnonWnonDnon_medic_1";
+		[[player,"AinvPknlMstpSnonWnonDnon_medic_1"],"life_fnc_animSync",true,false] spawn life_fnc_MP;
 		player playMoveNow "AinvPknlMstpSnonWnonDnon_medic_1";
 	};
 	sleep 0.2;
@@ -61,7 +60,7 @@ switch (true) do
 	{
 		if(!local _vehicle) then
 		{
-			[[_vehicle,(Fuel _vehicle) + 0.5],"life_fnc_setFuel",_vehicle,false] call life_fnc_MP;
+			[[_vehicle,(Fuel _vehicle) + 0.5],"life_fnc_setFuel",_vehicle,false] spawn life_fnc_MP;
 		}
 			else
 		{
@@ -73,7 +72,7 @@ switch (true) do
 	{
 		if(!local _vehicle) then
 		{
-			[[_vehicle,(Fuel _vehicle) + 0.2],"life_fnc_setFuel",_vehicle,false] call life_fnc_MP;
+			[[_vehicle,(Fuel _vehicle) + 0.2],"life_fnc_setFuel",_vehicle,false] spawn life_fnc_MP;
 		}
 			else
 		{
@@ -85,7 +84,7 @@ switch (true) do
 	{
 		if(!local _vehicle) then
 		{
-			[[_vehicle,(Fuel _vehicle) + 0.35],"life_fnc_setFuel",_vehicle,false] call life_fnc_MP;
+			[[_vehicle,(Fuel _vehicle) + 0.35],"life_fnc_setFuel",_vehicle,false] spawn life_fnc_MP;
 		}
 			else
 		{
@@ -94,4 +93,4 @@ switch (true) do
 	};
 };
 titleText[format[localize "STR_ISTR_Jerry_Success",_displayName],"PLAIN"];
-[true,"fuelEmpty",1] call life_fnc_handleInv;
+[true,"fuelE",1] call life_fnc_handleInv;

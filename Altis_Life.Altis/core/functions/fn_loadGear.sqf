@@ -1,4 +1,3 @@
-#include <macro.h>
 /*
     File: fn_loadGear.sqf
     Author: Bryan "Tonic" Boardwine
@@ -13,7 +12,8 @@ waitUntil {!(isNull (findDisplay 46))};
 _handle = [] spawn life_fnc_stripDownPlayer;
 waitUntil {scriptDone _handle};
 
-if(EQUAL(count _itemArray,0)) exitWith {
+if(count _itemArray == 0) exitWith
+{
     switch(playerSide) do {
         case west: {
             [] call life_fnc_copLoadout;
@@ -47,17 +47,11 @@ _pItems = [_itemArray,14,[],[[]]] call BIS_fnc_param;
 _hItems = [_itemArray,15,[],[[]]] call BIS_fnc_param;
 _yItems = [_itemArray,16,[],[[]]] call BIS_fnc_param;
 
-if(!(EQUAL(_goggles,""))) then {_handle = [_goggles,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
-if(!(EQUAL(_headgear,""))) then {_handle = [_headgear,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
-if(!(EQUAL(_uniform,""))) then {_handle = [_uniform,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
-if(!(EQUAL(_vest,""))) then {_handle = [_vest,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
-if(!(EQUAL(_backpack,""))) then {_handle = [_backpack,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
-
-/* Hotfix for losing virtual items on login */
-if(!isNil {SEL(_this,0)}) then {
-	ADD(life_maxWeight,(round(FETCH_CONFIG2(getNumber,CONFIG_VEHICLES,(backpack player),"maximumload") / 4)));
-};
-
+if(_goggles != "") then {_handle = [_goggles,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
+if(_headgear != "") then {_handle = [_headgear,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
+if(_uniform != "") then {_handle = [_uniform,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
+if(_vest != "") then {_handle = [_vest,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
+if(_backpack != "") then {_handle = [_backpack,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
 {_handle = [_x,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};} foreach _items;
 
 {player addItemToUniform _x;} foreach (_uItems);
@@ -67,27 +61,27 @@ if(!isNil {SEL(_this,0)}) then {
 {player addItemToBackpack _x;} foreach (_bItems);
 {(backpackContainer player) addItemCargoGlobal [_x,1];} foreach (_bMags);
 life_maxWeight = 100;
-
 {
-    [true,SEL(_x,0),SEL(_x,1)] call life_fnc_handleInv;
+    _item = [_x,1] call life_fnc_varHandle;
+    [true,_item,1] call life_fnc_handleInv;
 } foreach (_yItems);
-
 life_maxWeight = 24;
+
 //Primary & Secondary (Handgun) should be added last as magazines do not automatically load into the gun.
-if(!(EQUAL(_prim,""))) then {_handle = [_prim,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
-if(!(EQUAL(_seco,""))) then {_handle = [_seco,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
+if(_prim != "") then {_handle = [_prim,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
+if(_seco != "") then {_handle = [_seco,true,false,false,false] spawn life_fnc_handleItem; waitUntil {scriptDone _handle};};
 
 {
-    if (!(EQUAL(_x,""))) then {
+    if (_x != "") then {
         player addPrimaryWeaponItem _x;
     };
 } foreach (_pItems);
 {
-    if (!(EQUAL(_x,""))) then {
+    if (_x != "") then {
         player addHandgunItem _x;
     };
 } foreach (_hItems);
 
-if(playerSide == independent && {EQUAL(uniform player,"U_Rangemaster")}) then {
-	[[player,0,"textures\medic_uniform.jpg"],"life_fnc_setTexture",true,false] call life_fnc_MP;
+if(playerSide == independent && {uniform player == "U_Rangemaster"}) then {
+	[[player,0,"textures\medic_uniform.jpg"],"life_fnc_setTexture",true,false] spawn life_fnc_MP;
 };

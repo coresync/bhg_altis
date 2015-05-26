@@ -14,7 +14,7 @@ if(!(_house isKindOf "House_F")) exitWith {};
 if(isNil {_house getVariable "house_owner"}) exitWith {hint "There is no owner for this house."};
 closeDialog 0;
 
-_houseCfg = [M_CONFIG(getNumber,"Houses",typeOf(_house),"price"),M_CONFIG(getNumber,"Houses",typeOf(_house),"maxStorage")];
+_houseCfg = [(typeOf _house)] call life_fnc_houseConfig;
 if(count _houseCfg == 0) exitWith {};
 
 _action = [
@@ -25,14 +25,14 @@ _action = [
 
 if(_action) then {
 	_house setVariable["house_sold",true,true];
-	[[_house],"TON_fnc_sellHouse",false,false] call life_fnc_MP;
+	[[_house],"TON_fnc_sellHouse",false,false] spawn life_fnc_MP;
 	_house setVariable["locked",false,true];
 	_house setVariable["Trunk",nil,true];
 	_house setVariable["containers",nil,true];
 	deleteMarkerLocal format["house_%1",_house getVariable "uid"];
 	_house setVariable["uid",nil,true];
 	
-	BANK = BANK + (round((_houseCfg select 0)/2));
+	life_atmcash = life_atmcash + (round((_houseCfg select 0)/2));
 	_index = life_vehicles find _house;
 	if(_index != -1) then {
 		life_vehicles set[_index,-1];

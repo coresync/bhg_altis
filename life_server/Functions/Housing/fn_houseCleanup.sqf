@@ -1,6 +1,6 @@
 /*
 	Author: Bryan "Tonic" Boardwine
-
+	
 	Description:
 	Cleans up containers inside the house.
 */

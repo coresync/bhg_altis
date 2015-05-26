@@ -6,30 +6,37 @@
 	Description:
 	Searches the vehicle for illegal items.
 */
-private["_vehicle","_vehicleInfo","_value","_list"];
+private["_vehicle","_vehicleInfo","_value"];
 _vehicle = cursorTarget;
-_list = ["Air","Ship","LandVehicle"];
-if(isNull _vehicle OR {!(KINDOF_ARRAY(_vehicle,_list))}) exitWith {};
+if(isNull _vehicle) exitWith {};
+if(!((_vehicle isKindOf "Air") OR (_vehicle isKindOf "Ship") OR (_vehicle isKindOf "LandVehicle"))) exitWith {};
 
-_vehicleInfo = _vehicle GVAR ["Trunk",[]];
-if(EQUAL(count _vehicleInfo,0)) exitWith {hint localize "STR_Cop_VehEmpty"};
+_vehicleInfo = _vehicle getVariable ["Trunk",[]];
+if(count _vehicleInfo == 0) exitWith {hint localize "STR_Cop_VehEmpty"};
 
 _value = 0;
 {
-	_var = SEL(_x,0);
-	_val = SEL(_x,1);
+	_var = _x select 0;
+	_val = _x select 1;
 	
-	if(EQUAL(ITEM_ILLEGAL(_var),1)) then {
-		if(!(EQUAL(ITEM_SELLPRICE(_var),-1))) then {
-			ADD(_value,(round(_val * ITEM_SELLPRICE(_var) / 2)));
+	_index = [_var,life_illegal_items] call TON_fnc_index;
+	if(_index != -1) then
+	{
+		_vIndex = [_var,__GETC__(sell_array)] call TON_fnc_index;
+		if(_vIndex != -1) then
+		{
+			_value = _value + (_val * ((__GETC__(sell_array) select _vIndex) select 1));
 		};
 	};
-} foreach (SEL(_vehicleInfo,0));
+} foreach (_vehicleInfo select 0);
 
-if(_value > 0) then {
-	[[0,"STR_NOTF_VehContraband",true,[[_value] call life_fnc_numberText]],"life_fnc_broadcast",true,false] call life_fnc_MP;
-	ADD(BANK,_value);
-	_vehicle SVAR ["Trunk",[],true];
-} else {
+if(_value > 0) then
+{
+	[[0,"STR_NOTF_VehContraband",true,[[_value] call life_fnc_numberText]],"life_fnc_broadcast",true,false] spawn life_fnc_MP;
+	life_atmcash = life_atmcash + _value;
+	_vehicle setVariable["Trunk",[],true];
+}
+	else
+{
 	hint localize "STR_Cop_NoIllegalVeh";
 };

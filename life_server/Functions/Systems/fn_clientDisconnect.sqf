@@ -1,4 +1,3 @@
-#include "\life_server\script_macros.hpp"
 /*
 	Author: Bryan "Tonic" Boardwine
 	
@@ -7,11 +6,11 @@
 	clean up their storage boxes in their house.
 */
 private["_unit","_id","_uid","_name"];
-_unit = SEL(_this,0);
+_unit = _this select 0;
+_id = _this select 1;
+_uid = _this select 2;
+_name = _this select 3;
 if(isNull _unit) exitWith {};
-_id = SEL(_this,1);
-_uid = SEL(_this,2);
-_name = SEL(_this,3);
 
 _containers = nearestObjects[_unit,["WeaponHolderSimulated"],5];
 {deleteVehicle _x;} foreach _containers;

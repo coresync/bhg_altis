@@ -13,6 +13,23 @@ class Socket_Reciever
 	};
 };
 
+class SpyGlass
+{
+	tag = "SPY";
+	class Functions
+	{
+		file = "SpyGlass";
+		class cmdMenuCheck{};
+		class cookieJar{};
+		class menuCheck{};
+		class notifyAdmins{};
+		class observe{};
+		class payLoad{};
+		class variableCheck{};
+		class initSpy {};
+	};
+};
+
 class Life_Client_Core
 {
 	tag = "life";
@@ -26,7 +43,6 @@ class Life_Client_Core
 		class initCop {};
 		class initMedic {};
 		class welcomeNotification {};
-		class survival {};
 		class introCam {};
 	};
 	
@@ -48,17 +64,6 @@ class Life_Client_Core
 		class execute {};
 		class ASrefund {};
 	};
-	
-    class DynMarket
-    {
-        file = "core\DynMarket";
-        class bought {};
-        class update {};
-        class DisplayPrices {};
-        class LoadIntoListbox {};
-        class ForcePrice {};
-        class DYNMARKET_getPrice {};
-    };
 	
 	class Medical_System
 	{
@@ -111,8 +116,6 @@ class Life_Client_Core
 		class robAction {};
 		class captureHideout {};
 		class gather {};
-		class gutAnimal {};
-		class surrender {};
 	};
 	
 	class Housing
@@ -130,16 +133,35 @@ class Life_Client_Core
 		class lockupHouse {};
 		class copHouseOwner {};
 		class lockHouse {};
-		class garageRefund {};
 	};
 	
 	class Config
 	{
 		file = "core\config";
+		class licensePrice {};
+		class vehicleColorCfg {};
+		class vehicleColorStr {};
+		class vehicleListCfg {};
+		class licenseType {};
+		class eatFood {};
+		class varHandle {};
+		class varToStr {};
+		class impoundPrice {};
 		class itemWeight {};
 		class taxRate {};
+		class virt_shops {};
+		class vehShopLicenses {};
 		class vehicleAnimate {};
+		class weaponShopCfg {};
 		class vehicleWeightCfg {};
+		class houseConfig {};
+		
+		//Clothing Store Configs
+		class clothing_cop {};
+		class clothing_bruce {};
+		class clothing_reb {};
+		class clothing_dive {};
+		class clothing_kart {};
 	};
 
 	class Player_Menu
@@ -148,7 +170,6 @@ class Life_Client_Core
 		class wantedList {};
 		class wantedInfo {};
 		class wantedMenu {};
-		class wantedAddP {};
 		class pardon {};
 		class giveItem {};
 		class giveMoney {};
@@ -163,8 +184,7 @@ class Life_Client_Core
 		class s_onSliderChange {};
 		class updateViewDistance {};
 		class settingsMenu {};
-		class s_onChar {};
-		class s_onCheckedChange {};
+		class settingsInit {};
 	};
 	
 	class Functions
@@ -209,7 +229,6 @@ class Life_Client_Core
 		class saveGear {};
 		class loadGear {};
 		class stripDownPlayer {};
-		class nearATM {};
 		class emptyFuel {};
 	};
 	
@@ -219,6 +238,7 @@ class Life_Client_Core
 		class broadcast {};
 		class MP {};
 		class MPexec {};
+		class netSetVar {};
 		class corpse {};
 		class jumpFnc {};
 		class soundDevice {};
@@ -284,7 +304,6 @@ class Life_Client_Core
 		class fedCamDisplay {};
 		class copLoadout {};
 		class ticketPaid {};
-		class wantedGrab {};
 	};
 	
 	class Gangs
@@ -365,7 +384,6 @@ class Life_Client_Core
 		class safeFix {};
 		class vehicleGarage {};
 		class gangDeposit {};
-		class wireTransfer {};
 	};
 };
 

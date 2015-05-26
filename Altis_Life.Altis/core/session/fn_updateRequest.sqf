@@ -1,18 +1,17 @@
-#include <macro.h>
 /*
 	File: fn_updateRequest.sqf
 	Author: Tonic
 */
 private["_packet","_array","_flag"];
-_packet = [getPlayerUID player,(profileName),playerSide,CASH,BANK];
+_packet = [getPlayerUID player,(profileName),playerSide,life_cash,life_atmcash];
 _array = [];
 _flag = switch(playerSide) do {case west: {"cop"}; case civilian: {"civ"}; case independent: {"med"};};
-
 {
-	_varName = LICENSE_VARNAME(configName _x,_flag);
-	_array pushBack [_varName,LICENSE_VALUE(configName _x,_flag)];
-} foreach (format["getText(_x >> 'side') isEqualTo '%1'",_flag] configClasses (missionConfigFile >> "Licenses"));
-
+	if(_x select 1 == _flag) then
+	{
+		_array pushBack [_x select 0,(missionNamespace getVariable (_x select 0))];
+	};
+} foreach life_licenses;
 _packet pushBack _array;
 
 [] call life_fnc_saveGear;
@@ -23,4 +22,4 @@ switch (playerSide) do {
 	};
 };
 
-[_packet,"DB_fnc_updateRequest",false,false] call life_fnc_MP;
+[_packet,"DB_fnc_updateRequest",false,false] spawn life_fnc_MP;

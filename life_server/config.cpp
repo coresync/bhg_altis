@@ -1,6 +1,3 @@
-#define true 1
-#define false 0
-
 class DefaultEventhandlers;
 class CfgPatches 
 {
@@ -10,34 +7,9 @@ class CfgPatches
 		weapons[] = {};
 		requiredAddons[] = {"A3_Data_F","A3_Soft_F","A3_Soft_F_Offroad_01","A3_Characters_F"};
 		fileName = "life_server.pbo";
-		author[]= {"Tonic"}; 
+		author[]= {"TAW_Tonic"}; 
 	};
 };
-
-/*Server Settings*/
-
-class CfgServerSettings
-{
-	class extDB
-	{
-		/*Database Selection*/
-		Database = "AltisLife"; //Database config name
-		/*RCON Settings*/
-		RCON = false; //Enabled?
-		RCON_Selection = "RCON"; //Selection of what RCON config to pull from the extDB Configuration file eg. [RCON]
-		/*VAC Settings*/
-		VAC = false; //Enabled? If you want to ban VAC'd players, edit it in the extDB Configuration file.
-		/*MISC settings*/
-		MISC = false; //Enabled? Allows you to use certain features that are not really related to the database for extDB
-		/*Logging Settings*/
-		LOG = false; //Custom Logging Enabled?
-		LOG_Settings[] = {{"HACKER","hacker.log"},{"LOG2","debug.log"}}; //First Selection = ID | Second Selection = Log File
-		/*Debug*/
-		MySQL_Query = false; //Log queries? Only set this to true if you are developing.
-	};
-};
-
-/*Functions*/
 
 class CfgFunctions
 {
@@ -73,8 +45,10 @@ class CfgFunctions
 			class asyncCall{};
 			class insertRequest{};
 			class updateRequest{};
+			class mresToArray {};
 			class insertVehicle {};
 			class bool{};
+			class mresString {};
 			class updatePartial {};
 		};
 	};
@@ -88,10 +62,11 @@ class CfgFunctions
 			class wantedFetch {};
 			class wantedPerson {};
 			class wantedBounty {};
+			class wantedTicket {};
+			class wantedPardon {};
 			class wantedRemove {};
 			class wantedAdd {};
-			class wantedCrimes {};
-			class wantedProfUpdate {};
+			class wantedPunish {};
 		};
 		
 		class Jail_Sys
@@ -106,30 +81,9 @@ class CfgFunctions
 		};
 	};
 	
-	
-	
 	class TON_System
 	{
 		tag = "TON";
-		class AS
-		{
-			file = "\life_server\AS_AdminMenu";
-			class receiver {};
-			class config {};
-			class getActions {};
-		};
-		
-        class DynMarket
-        {
-            file = "\life_server\Functions\DynMarket";
-            class calculatePrices {};
-            class config {};
-            class getUpdate {};
-            class HandleDB {};
-            class playerLogged {};
-            class sleeper {};
-        };
-				
 		class Systems
 		{
 			file = "\life_server\Functions\Systems";
@@ -153,6 +107,14 @@ class CfgFunctions
 			class keyManagement {};
 		};
 		
+		class AS
+		{
+			file = "\life_server\AS_AdminMenu";
+			class receiver {};
+			class config {};
+			class getActions {};
+		};
+		
 		class Housing
 		{
 			file = "\life_server\Functions\Housing";
@@ -163,7 +125,6 @@ class CfgFunctions
 			class updateHouseContainers {};
 			class updateHouseTrunk {};
 			class houseCleanup {};
-			class preCheckHouse {};
 		};
 		
 		class Gangs
@@ -173,12 +134,6 @@ class CfgFunctions
 			class queryPlayerGang {};
 			class removeGang {};
 			class updateGang {};
-		};
-
-		class Actions
-		{
-			file = "\life_server\Functions\Actions";
-			class pickupAction {};
 		};
 	};
 };

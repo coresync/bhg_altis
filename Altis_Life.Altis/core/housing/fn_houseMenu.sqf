@@ -1,4 +1,3 @@
-#include <macro.h>
 /*
 	Author: Bryan "Tonic" Boardwine
 	
@@ -22,17 +21,22 @@ if(!dialog) then {
 disableSerialization;
 _curTarget = [_this,0,ObjNull,[ObjNull]] call BIS_fnc_param;
 if(isNull _curTarget) exitWith {closeDialog 0;}; //Bad target
-_houseCfg = M_CONFIG(getNumber,"Houses",typeOf(_curTarget),"price");
-if (_houseCfg == 0) exitWith {closeDialog 0};
 
-_Btn1 = CONTROL(37400,Btn1);
-_Btn2 = CONTROL(37400,Btn2);
-_Btn3 = CONTROL(37400,Btn3);
-_Btn4 = CONTROL(37400,Btn4);
-_Btn5 = CONTROL(37400,Btn5);
-_Btn6 = CONTROL(37400,Btn6);
-_Btn7 = CONTROL(37400,Btn7);
-{_x ctrlShow false;} foreach [_Btn1,_Btn2,_Btn3,_Btn4,_Btn5,_Btn6,_Btn7];
+_display = findDisplay 37400;
+_Btn1 = _display displayCtrl Btn1;
+_Btn2 = _display displayCtrl Btn2;
+_Btn3 = _display displayCtrl Btn3;
+_Btn4 = _display displayCtrl Btn4;
+_Btn5 = _display displayCtrl Btn5;
+_Btn6 = _display displayCtrl Btn6;
+_Btn7 = _display displayCtrl Btn7;
+_Btn1 ctrlShow false;
+_Btn2 ctrlShow false;
+_Btn3 ctrlShow false;
+_Btn4 ctrlShow false;
+_Btn5 ctrlShow false;
+_Btn6 ctrlShow false;
+_Btn7 ctrlShow false;
 
 life_pInact_curTarget = _curTarget;
 if(_curTarget isKindOf "House_F" && playerSide == west) exitWith {
@@ -47,7 +51,7 @@ if(_curTarget isKindOf "House_F" && playerSide == west) exitWith {
 		_Btn2 ctrlShow true;
 		
 	} else {
-		if(!isNil {_curTarget GVAR "house_owner"}) then {
+		if(!isNil {_curTarget getVariable "house_owner"}) then {
 			_Btn1 ctrlSetText localize "STR_House_Raid_Owner";
 			_Btn1 buttonSetAction "[life_pInact_curTarget] call life_fnc_copHouseOwner;";
 			_Btn1 ctrlShow true;
@@ -73,13 +77,16 @@ if(_curTarget isKindOf "House_F" && playerSide == west) exitWith {
 	};
 };
 
-if(!(_curTarget in life_vehicles) OR isNil {_curTarget GVAR "house_owner"}) then {
-	if(_curTarget in life_vehicles) then {SUB(life_vehicles,[_curTarget]);};
+_houseCfg = [(typeOf _curTarget)] call life_fnc_houseConfig;
+if(_houseCfg isEqualTo []) exitWith {closeDialog 0;};
+
+if(!(_curTarget in life_vehicles) OR isNil {_curTarget getVariable "house_owner"}) then {
+	if(_curTarget in life_vehicles) then {life_vehicles = life_vehicles - [_curTarget];};
 	_Btn1 ctrlSetText localize "STR_pInAct_BuyHouse";
 	_Btn1 buttonSetAction "[life_pInact_curTarget] spawn life_fnc_buyHouse;";
 	_Btn1 ctrlShow true;
 	
-	if(!isNil {_curTarget GVAR "house_owner"}) then {
+	if(!isNil {_curTarget getVariable "house_owner"}) then {
 		_Btn1 ctrlEnable false;
 	};
 } else {
@@ -88,7 +95,7 @@ if(!(_curTarget in life_vehicles) OR isNil {_curTarget GVAR "house_owner"}) then
 		_Btn1 buttonSetAction "[life_pInact_curTarget] spawn life_fnc_sellHouse; closeDialog 0;";
 		_Btn1 ctrlShow true;
 		
-		if(SEL(_curTarget GVAR "house_owner",0) != steamid) then {
+		if(((_curTarget getVariable "house_owner") select 0) != (getPlayerUID player)) then {
 			_Btn1 ctrlEnable false;
 		};
 		
@@ -104,11 +111,11 @@ if(!(_curTarget in life_vehicles) OR isNil {_curTarget GVAR "house_owner"}) then
 		_Btn1 buttonSetAction "[life_pInact_curTarget] spawn life_fnc_sellHouse; closeDialog 0;";
 		_Btn1 ctrlShow true;
 		
-		if(((_curTarget GVAR "house_owner") select 0) != (getPlayerUID player)) then {
+		if(((_curTarget getVariable "house_owner") select 0) != (getPlayerUID player)) then {
 			_Btn1 ctrlEnable false;
 		};
 		
-		if(_curTarget GVAR ["locked",false]) then {
+		if(_curTarget getVariable ["locked",false]) then {
 			_Btn2 ctrlSetText localize "STR_pInAct_UnlockStorage";
 		} else {
 			_Btn2 ctrlSetText localize "STR_pInAct_LockStorage";
@@ -116,7 +123,7 @@ if(!(_curTarget in life_vehicles) OR isNil {_curTarget GVAR "house_owner"}) then
 		_Btn2 buttonSetAction "[life_pInact_curTarget] call life_fnc_lockHouse; closeDialog 0;";
 		_Btn2 ctrlShow true;
 		
-		if(isNull (_curTarget GVAR ["lightSource",ObjNull])) then {
+		if(isNull (_curTarget getVariable ["lightSource",ObjNull])) then {
 			_Btn3 ctrlSetText localize "STR_pInAct_LightsOn";
 		} else {
 			_Btn3 ctrlSetText localize "STR_pInAct_LightsOff";

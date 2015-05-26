@@ -1,4 +1,3 @@
-#include <macro.h>
 /*
 	Author: Bryan "Tonic" Boardwine
 	
@@ -11,9 +10,9 @@ _boxType = _this select 0;
 _house = nearestBuilding (getPosATL player);
 if(!(_house in life_vehicles)) exitWith {hint localize "STR_ISTR_Box_NotinHouse"};
 _containers = _house getVariable["containers",[]];
-_houseCfg = M_CONFIG(getNumber,"Houses",typeOf(_house),"maxStorage");
-if(_houseCfg == 0) exitWith {}; //What the fuck just happened?
-if(count _containers >= _houseCfg) exitWith {hint localize "STR_ISTR_Box_HouseFull"};
+_houseCfg = [(typeOf _house)] call life_fnc_houseConfig;
+if(count _houseCfg == 0) exitWith {}; //What the fuck happened?
+if(count _containers >= (_houseCfg select 1)) exitWith {hint localize "STR_ISTR_Box_HouseFull"};
 
 _slots = _house getVariable ["slots",[]];
 _positions = [_house] call life_fnc_getBuildingPositions;
@@ -35,7 +34,7 @@ switch (_boxType) do {
 		
 		_containers pushBack _container;
 		_house setVariable["containers",_containers,true];
-		[[_house],"TON_fnc_updateHouseContainers",false,false] call life_fnc_MP;
+		[[_house],"TON_fnc_updateHouseContainers",false,false] spawn life_fnc_MP;
 		
 		//Empty out the crate
 		clearWeaponCargoGlobal _container;
@@ -50,7 +49,7 @@ switch (_boxType) do {
 		
 		_containers pushBack _container;
 		_house setVariable["containers",_containers,true];
-		[[_house],"TON_fnc_updateHouseContainers",false,false] call life_fnc_MP;
+		[[_house],"TON_fnc_updateHouseContainers",false,false] spawn life_fnc_MP;
 		
 		//Empty out the crate
 		clearWeaponCargoGlobal _container;
