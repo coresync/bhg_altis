@@ -109,6 +109,7 @@ class Life_Client_Core
 		class searchVehAction {};
 		class unrestrain {};
 		class pickupItem {};
+		class dynprocess {};
 		class pickupMoney {};
 		class ticketAction {};
 		class packupSpikes {};
