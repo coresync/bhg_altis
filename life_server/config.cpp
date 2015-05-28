@@ -105,6 +105,8 @@ class CfgFunctions
 			class cleanupRequest {};
 			class setObjVar {};
 			class keyManagement {};
+			class getPrices {};
+			class ajustprices {};
 		};
 		
 		class AS

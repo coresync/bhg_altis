@@ -1,8 +1,8 @@
 #include <macro.h>
 /*
 	File: fn_virt_update.sqf
-	Author: Bryan "Tonic" Boardwine
-	edited by worldtrade1101
+	Author: Worldtrade1101
+	Base on Tonic script
 	Description:
 	Update and fill the virtual shop menu.
 */
@@ -18,38 +18,40 @@ _gear_list = _display displayCtrl 2402;
 lbClear _item_list;
 lbClear _gear_list;
 
+_type= [_this,0,0,[0]] call BIS_fnc_param;
+_array= [_this,1,[],[[]]] call BIS_fnc_param;
+
 _shop_data = [life_shop_type] call life_fnc_virt_shops;
 ctrlSetText[2403,format["%1", _shop_data select 0]];
 
-_sender = player;
-_uid = getPlayerUID _sender;
-
-[[0,_sender,life_shop_type],"TON_fnc_getprices",false,false] spawn life_fnc_MP;
+if (count _array == 0 ) exitwith {};
 
 
-/*
 {
-	_name = [([_x,0] call life_fnc_varHandle)] call life_fnc_vartostr;
-	_index = [_x,__GETC__(buy_array)] call fnc_index;
-	if(_index != -1) then
-	{
-		_price = (__GETC__(buy_array) select _index) select 1;
+if ((_x select 1) > 1 ) then {
+	_name = [([(_x select 0),0] call life_fnc_varHandle)] call life_fnc_vartostr;
+	
+		_price = _x select 1;
 		_item_list lbAdd format["%1  ($%2)",_name,[_price] call life_fnc_numberText];
-		_item_list lbSetData [(lbSize _item_list)-1,_x];
+		_item_list lbSetData [(lbSize _item_list)-1,_x select 0];
 		_item_list lbSetValue [(lbSize _item_list)-1,_price];
+	
 	};
-} foreach (_shop_data select 1);
+} foreach _array;
 
 {
-	_var = [_x,0] call life_fnc_varHandle;
+	if ((_x select 2) > 1 ) then {
+	_name = _x select 0;
+	_var = [_name,0] call life_fnc_varHandle;
 	_val = missionNameSpace getVariable _var;
 	_name = [_var] call life_fnc_vartostr;
 	
 	if(_val > 0) then
 	{
+		_price = _x select 2;
 		_gear_list lbAdd format["%1x %2",_val,_name];
-		_gear_list lbSetData [(lbSize _gear_list)-1,_x];
+		_gear_list lbSetData [(lbSize _gear_list)-1,_x select 0];
+		_gear_list lbSetValue [(lbSize _gear_list)-1,_price];
+		};
 	};
-} foreach (_shop_data select 1);
-
-*/
+} foreach (_array);

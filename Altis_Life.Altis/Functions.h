@@ -119,6 +119,15 @@ class Life_Client_Core
 		class gather {};
 	};
 	
+	class economy
+	{
+		file = "core\economy";
+		class virt_updatePrice {};
+		class addsubstract {};
+		class openEconomy {};
+		class virt_updateEconomy {};
+	};
+	
 	class Housing
 	{
 		file = "core\housing";
