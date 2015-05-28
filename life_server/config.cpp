@@ -105,6 +105,8 @@ class CfgFunctions
 			class cleanupRequest {};
 			class setObjVar {};
 			class keyManagement {};
+			class handleMessages {};
+            class msgRequest {};
 		};
 		
 		class AS
