@@ -29,3 +29,6 @@
 #include "AS_Refund.hpp"
 
 #include "fuelStation.hpp"
+
+#include "dynmarket_changeprice.hpp"
+#include "dynmarket_prices.hpp"
