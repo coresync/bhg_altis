@@ -28,7 +28,7 @@ _veh_data = life_trunk_vehicle getVariable ["Trunk",[[],0]];
 _inv = _veh_data select 0;
 
 if(_ctrl == "goldbar" && {!(life_trunk_vehicle isKindOf "LandVehicle" OR life_trunk_vehicle isKindOf "House_F")}) exitWith {hint "You cannot store that in anything but a land vehicle!"};
-
+if(_ctrl == "uranu" && {!(life_trunk_vehicle isKindOf "LandVehicle" OR life_trunk_vehicle isKindOf "House_F")}) exitWith {hint "Du kannst keinen Radioaktivien Uranabfall mit dem Heli transportieren!"};
 if(_ctrl == "money") then
 {
 	_index = [_ctrl,_inv] call TON_fnc_index;

@@ -56,5 +56,7 @@ switch (_item) do
 	case "defusekit": {2};
 	case "storagesmall": {5};
 	case "storagebig": {10};
+	case "uranu": {6};
+	case "uranp": {4};
 	default {1};
 };

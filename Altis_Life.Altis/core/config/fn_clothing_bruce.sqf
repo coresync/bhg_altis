@@ -32,6 +32,7 @@ switch (_filter) do
 		["U_C_WorkerCoveralls","Mechanic Coveralls",2500],
 		["U_OrestesBody","Surfing On Land",1100],
 		["U_NikosAgedBody","Casual Wears",5000]
+		["U_C_Scientist","Strahlenanzug",100000]
 		];
 	};
 	

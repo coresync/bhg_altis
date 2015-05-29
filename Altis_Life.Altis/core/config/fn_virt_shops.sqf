@@ -15,7 +15,7 @@ switch (_shop) do
 	case "gang": {["Gang Market", ["water","rabbit","apple","redgull","tbacon","lockpick","pickaxe","fuelF","peach","blastingcharge","boltcutter"]]};
 	case "wongs": {["Wong's Food Cart",["turtlesoup","turtle"]]};
 	case "coffee": {["Stratis Coffee Club",["coffee","donuts"]]};
-	case "heroin": {["Drug Dealer",["cocainep","heroinp","marijuana"]]};
+	case "heroin": {["Drogen Dealer",["cocainep","heroinp","uranp","marijana"]]}
 	case "oil": {["Oil Trader",["oilp","pickaxe","fuelF"]]};
 	case "fishmarket": {["Altis Fish Market",["salema","ornate","mackerel","mullet","tuna","catshark"]]};
 	case "glass": {["Altis Glass Dealer",["glass"]]};

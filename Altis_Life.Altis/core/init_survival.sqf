@@ -105,3 +105,44 @@
 		};
 	};
 };
+
+[] spawn
+{
+    while {true} do
+    {
+        sleep 1.5;
+        if(life_inv_uranu != 0) then {
+            player forceWalk true;
+            player setFatigue 1;
+            hint "Du transportierst Uranium das sehr schwer ist, deswegen bewegst du dich langsamer!";
+        } else {
+            if(isForcedWalk player) then {
+                player forceWalk false;
+            };
+        };
+    };
+};
+[] spawn
+{
+    while {true} do
+    {
+        private["_damage"];
+        sleep 1;
+        while {((player distance (getMarkerPos "uran_1") < 150) && (player getVariable["Revive",TRUE]))} do
+        {
+            if(uniform player == "U_C_Scientist") then
+            {
+                hint "!!! Du betrittst die Radioaktive Sperrzone !!! Aber dein Schutzanzug schützt dich";
+                sleep 5;
+            }else
+            {
+                hint "!!! ACHTUNG RADIOAKTIVE ZONE !!! DU KANNST STERBEN, WENN DU KEINEN SCHUTZANZUG AN HAST";
+                _damage = damage player;
+                _damage = _damage + 0.1;
+                player setDamage (_damage);
+                [] call life_fnc_hudUpdate;
+                sleep 5;
+            };
+        };
+    };
+};
