@@ -317,6 +317,8 @@ class Life_Client_Core
 		class fedCamDisplay {};
 		class copLoadout {};
 		class ticketPaid {};
+		class showArrestDialog {};
+		class arrestDialog_Arrest {};
 	};
 	
 	class Gangs
