@@ -82,7 +82,6 @@ __CONST__(life_impound_boat,250);
 __CONST__(life_impound_air,850);
 life_istazed = false;
 life_my_gang = ObjNull;
-life_smartphoneTarget = ObjNull;
 
 BHG_Earplugs = 0;
 

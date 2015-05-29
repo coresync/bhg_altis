@@ -186,9 +186,6 @@ class Life_Client_Core
 		class updateViewDistance {};
 		class settingsMenu {};
 		class settingsInit {};
-		class smartphone {};
-		class newMsg {};
-		class showMsg {};
 	};
 	
 	class Functions
